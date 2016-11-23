@@ -10,8 +10,8 @@ module MailgunWebhooks
       params = request.params
 
       if request.path == MailgunWebhooks.endpoint
-        MailgunWebhooks.trigger(params['event'], params)
-        [200, {}, []]
+        status_code = MailgunWebhooks.trigger(params['event'], params)
+        [status_code, {}, []]
       else
         @app.call(env)
       end
